@@ -18,15 +18,16 @@ To manage a subscription, send a POST request to the `/subscription` endpoint.
 | limit     | max number of reviews to include in each digest; <i>* only required when starting/restarting a subscription</i>|
 
 ### Example:
-To start a subscription to app with id 59560850 and deliver daily digest every day at 9:25 PM with 5 reviews.
+To start a subscription to app with id 447188370 and deliver daily digest every day at 9:25 PM with 5 reviews.
 
-http://localhost:3000/subscription?appId=59560850&command=start&hour=21&minute=25&limit=5
+http://localhost:3000/subscription?appId=447188370&command=start&hour=21&minute=25&limit=5
 
 To pause it:
-http://localhost:3000/subscription?appId=59560850&command=stop
+http://localhost:3000/subscription?appId=447188370&command=stop
 
 ## To do
 - test suite
+- error handler missing/incorrect params
 - ability to configure timezone
 - modularize cron scheduling
 
