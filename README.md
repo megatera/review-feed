@@ -2,7 +2,7 @@
 
 - Install [node.js](http://nodejs.org/)
 - Clone repo and run `npm install` to install dependencies
-- Run `npm run dev` to start server
+- Run `npm start` to start server
 
 ## Managing subscriptions
 
@@ -28,4 +28,5 @@ http://localhost:3000/subscription?appId=59560850&command=stop
 ## To do
 - test suite
 - ability to configure timezone
+- modularize cron scheduling
 
