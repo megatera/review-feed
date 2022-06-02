@@ -27,7 +27,7 @@ http://localhost:3000/subscription?appId=447188370&command=stop
 
 ## To do
 - test suite
-- error handler missing/incorrect params
+- error handler missing/incorrect params + param validation
 - ability to configure timezone
 - modularize cron scheduling
 
