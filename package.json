@@ -1,9 +1,11 @@
 {
   "name": "review-feed",
   "version": "1.0.0",
-  "description": "Poll App Store for new reviews",
+  "description": "Subscribe to App Store reviews",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js --ignore taskCache.json",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,5 +14,14 @@
     "app"
   ],
   "author": "Megan Nadkarni",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "json2md": "^1.12.0",
+    "node-cron": "^3.0.0"
+  }
 }
