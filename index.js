@@ -39,10 +39,71 @@ app.use(express.urlencoded({ extended: true }));
 app.post(
   "/subscription?:appId",
 
-  // subscription controller
+  // subscription controller - modularize?
   (req, res, next) => {
     try {
       const { appId, command, minute, hour, limit } = req.query;
+
+      // validate request parameters
+      if (isNaN(Number(appId)) || appId.length !== 9) {
+        return next({
+          log: `Express error handler caught in subscription controller ERROR: Invalid app id`,
+          status: 400,
+          message: {
+            err: "Invalid app id",
+          },
+        });
+      }
+
+      if (!(command === "start" || command === "stop")) {
+        return next({
+          log: `Express error handler caught in subscription controller ERROR: Invalid command.`,
+          status: 400,
+          message: {
+            err: "Invalid command",
+          },
+        });
+      }
+
+      if (command === "start" && (minute === undefined || hour === undefined || limit === undefined)) {
+        return next({
+          log: `Express error handler caught in subscription controller ERROR: Missing parameters`,
+          status: 400,
+          message: {
+            err: "Missing parameters",
+          },
+        });
+      }
+
+      if (isNaN(Number(minute)) || Number(minute) > 59 || Number(minute) < 0 ) {
+        return next({
+          log: `Express error handler caught in subscription controller ERROR: Invalid minute parameter`,
+          status: 400,
+          message: {
+            err: "Invalid minute parameter",
+          },
+        });
+      }
+
+      if (isNaN(Number(hour)) || Number(hour) > 23 || Number(hour) < 0 ) {
+        return next({
+          log: `Express error handler caught in subscription controller ERROR: Invalid hour parameter`,
+          status: 400,
+          message: {
+            err: "Invalid hour parameter",
+          },
+        });
+      }
+
+      if (isNaN(Number(limit)) || Number(limit) <= 0) {
+        return next({
+          log: `Express error handler caught in subscription controller ERROR: Invalid limit parameter`,
+          status: 400,
+          message: {
+            err: "Invalid limit parameter",
+          },
+        });
+      }
 
       const existingTasks = fs.readFileSync("./taskCache.json");
       const taskCache = JSON.parse(existingTasks);
